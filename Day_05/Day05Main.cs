@@ -8,7 +8,7 @@ using System.Xml.Linq;
 
 namespace Day_05
 {
-    public class Program
+    public class Day05Main
     {
 
         static void Main(string[] args)

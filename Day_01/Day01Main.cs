@@ -13,7 +13,7 @@ namespace Day_01
     /// <summary>
     /// 
     /// </summary>
-    internal class Program
+    internal class Day01Main
     {
         /// <summary>
         /// Main entrypoint for the day 1 chalange.
