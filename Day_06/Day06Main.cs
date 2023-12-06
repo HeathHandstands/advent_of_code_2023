@@ -17,25 +17,28 @@ namespace Day_06
             //string[] inputLines = File.ReadAllLines("sample.input");
             string[] inputLines = File.ReadAllLines("challenge.input");
 
-            int[] times = GetIntsFromLine(inputLines[0]);
-            int[] distances = GetIntsFromLine(inputLines[1]);
-            int[] waysToWin = new int[times.Length];
-            int totalWins = 1;
-            int numRaces = times.Length;
-            int distance = 0;
+            UInt64[] times = GetIntsFromLineP2(inputLines[0]);
+            UInt64[] distances = GetIntsFromLineP2(inputLines[1]);
+            UInt64[] waysToWin = new UInt64[times.Length];
+            UInt64 totalWins = 1;
+            UInt64 numRaces = (UInt64)times.Length;
+            UInt64 distance = 0;
 
             //
-            for (int i = 0; i < numRaces; i++) 
+            for (UInt64 i = 0; i < numRaces; i++) 
             {
-                for (int j = 0; j < times[i]; j++)
+                for (UInt64 j = 0; j < times[i]; j++)
                 {
                     distance = j * (times[i] - j);
-                    waysToWin[i] += (distance > distances[i]) ? 1 : 0;
+                    if (distance > distances[i])
+                    {
+                        waysToWin[i]++;
+                    }
                 }
             }
 
             //
-            for (int i = 0; i < numRaces; i++)
+            for (UInt64 i = 0; i < numRaces; i++)
             {
                 totalWins = totalWins * waysToWin[i];
             }
@@ -55,7 +58,7 @@ namespace Day_06
 
 
 
-        private static int[] GetIntsFromLine(string line)
+        private static int[] GetIntsFromLineP1(string line)
         {
             //
             string[] tokens = trimmer.Replace(line, " ").Split(' ');
@@ -69,6 +72,25 @@ namespace Day_06
 
             return intValues;
         }
+
+
+        private static UInt64[] GetIntsFromLineP2(string line)
+        {
+            //
+            string[] tokens = line.Replace(" ", "").Split(':');
+            UInt64[] intValues = new UInt64[tokens.Length - 1];
+
+            //
+            for (int i = 1; i < tokens.Length; i++)
+            {
+                intValues[i - 1] = UInt64.Parse(tokens[i]);
+            }
+
+            return intValues;
+        }
+
+
+
 
 
     }
